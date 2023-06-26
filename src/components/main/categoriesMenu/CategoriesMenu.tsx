@@ -1,15 +1,20 @@
 import styles from "../categoriesMenu/CategoriesMenu.module.css";
 import { PuzzleItem } from "../../../data/model";
-import React from "react";
+import cn from "classnames";
 
 type CategoriesProps = {
     items: PuzzleItem[];
-    onChangeCat: (id: string) => void;
+    onChangeCategory: (nameCategory: string) => void;
+    categoryName: string;
 };
 
-function CategoriesMenu({ items, onChangeCat }: CategoriesProps) {
+function CategoriesMenu({
+    items,
+    onChangeCategory,
+    categoryName,
+}: CategoriesProps) {
     const categories = Array.from(new Set(items.map((item) => item.theme)));
-    console.log(categories);
+    //console.log(categories);
 
     return (
         <div className={styles["categories-wrapper"]}>
@@ -17,8 +22,10 @@ function CategoriesMenu({ items, onChangeCat }: CategoriesProps) {
                 {categories.map((elem, index) => (
                     <li key={`${elem}_${index}`}>
                         <button
-                            className={styles.item}
-                            onClick={() => onChangeCat(elem)}
+                            className={cn(styles.item,{[styles.active]:elem===categoryName})}
+                            onClick={() => {
+                                onChangeCategory(elem);
+                            }}
                         >
                             {elem}
                         </button>

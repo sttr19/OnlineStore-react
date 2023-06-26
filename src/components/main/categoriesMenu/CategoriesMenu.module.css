@@ -22,3 +22,17 @@
     cursor: pointer;
     transition: 0.3s;
 }
+
+.item:hover {
+    background-color: #f0937a;
+}
+
+.active {
+    color: rgb(70, 38, 212);
+    background-color: rgb(131, 172, 48);
+}
+
+.active:hover {
+    color: rgb(70, 38, 212);
+    background-color: rgb(131, 172, 48);
+}

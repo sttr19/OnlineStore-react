@@ -23,14 +23,14 @@ var toolkit_1 = require("@reduxjs/toolkit");
 var puzzles_json_1 = require("../../data/puzzles.json");
 exports.filterSlice = toolkit_1.createSlice({
     name: "filter",
-    initialState: { products: puzzles_json_1["default"], filteredProducts: puzzles_json_1["default"] },
+    initialState: { products: puzzles_json_1["default"], filteredProducts: puzzles_json_1["default"], value: "" },
     reducers: {
         setCategory: function (state, action) {
-            // console.log("slice", action);
+            console.log("slice", action.payload);
             var filterByCategory = state.products.filter(function (product) { return product.theme === action.payload; });
             return __assign(__assign({}, state), { filteredProducts: action.payload.length > 0
                     ? filterByCategory
-                    : __spreadArrays(state.products) });
+                    : __spreadArrays(state.products), value: action.payload });
         }
     }
 });

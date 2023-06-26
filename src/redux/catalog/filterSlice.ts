@@ -1,14 +1,12 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import products from "../../data/puzzles.json";
-import { PuzzleItem } from "../../data/model";
 
 export const filterSlice = createSlice({
     name: "filter",
-    initialState: { products, filteredProducts: products },
+    initialState: { products, filteredProducts: products, value: "" },
     reducers: {
         setCategory: (state, action) => {
-            // console.log("slice", action);
+            console.log("slice", action.payload);
             const filterByCategory = state.products.filter(
                 (product) => product.theme === action.payload
             );
@@ -18,6 +16,7 @@ export const filterSlice = createSlice({
                     action.payload.length > 0
                         ? filterByCategory
                         : [...state.products],
+                value: action.payload,
             };
         },
     },
